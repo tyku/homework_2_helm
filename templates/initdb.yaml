@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Chart.Name }}-migration-job
+  annotations:
+    "helm.sh/hook-weight": "100"
+spec:
+  template:
+    metadata:
+      name: {{ .Chart.Name }}-migration-job
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install-job
+          image: tyku/homework_2:latest
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: homework-config
+                  key: NODE_ENV
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homework-secret
+                  key: DATABASE_URI
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: homework-secret
+                  key: DB_USER
+            - name: DB_PSWD
+              valueFrom:
+                secretKeyRef:
+                  name: homework-secret
+                  key: DB_PSWD
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: homework-config
+                  key: DB_NAME
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: homework-config
+                  key: DB_PORT
+          command: ["npm", "run", "migration"]
+  backoffLimit: 0
