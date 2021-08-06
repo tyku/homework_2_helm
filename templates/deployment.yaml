@@ -39,26 +39,4 @@ spec:
                 secretKeyRef:
                   name: homework-secret
                   key: DATABASE_URI
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: homework-secret
-                  key: DB_USER
-            - name: DB_PSWD
-              valueFrom:
-                secretKeyRef:
-                  name: homework-secret
-                  key: DB_PSWD
-            - name: DB_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: homework-config
-                  key: DB_NAME
-            - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: homework-config
-                  key: DB_PORT
-            - name: DB_HOST
-              value: myapp-database
 
