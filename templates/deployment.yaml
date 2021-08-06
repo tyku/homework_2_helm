@@ -34,7 +34,7 @@ spec:
                 configMapKeyRef:
                   name: homework-config
                   key: NODE_ENV
-            - name: DATABASE_URL
+            - name: DATABASE_CONNECTION_STRING
               valueFrom:
                 secretKeyRef:
                   name: homework-secret
@@ -59,3 +59,6 @@ spec:
                 configMapKeyRef:
                   name: homework-config
                   key: DB_PORT
+            - name: DB_HOST
+              value: myapp-database
+

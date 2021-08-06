@@ -4,12 +4,12 @@ environment:
   NODE_PATH: development
 
 image:
-  repository: homework_2
-  imagePullPolicy: IfNotPresent
+  repository: tyku/homework_2
+  imagePullPolicy: Always
   tag: latest
 
 migration:
-  repository: homework_2
+  repository: tyku/homework_2
   imagePullPolicy: Always
   tag: latest
 
@@ -29,9 +29,6 @@ ingress:
         - path: /otusapp/artem($|/)(.*)
           pathType: Prefix
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 
 postgresql:
@@ -41,5 +38,4 @@ postgresql:
   postgresqlDatabase: myapp
   service:
     port: "5432"
-#    port: "30254"
 
