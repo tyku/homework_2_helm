@@ -8,7 +8,6 @@ data:
   NODE_ENV: "development"
   DB_NAME: {{ .Values.postgresql.postgresqlDatabase | quote  }}
   DB_PORT: {{ .Values.postgresql.service.port | quote  }}
-  DB_HOST: {{ include "postgresql.fullname" . | quote }}
 ---
 apiVersion: v1
 kind: Secret
